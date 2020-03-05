@@ -1,0 +1,9 @@
+.List ul li {
+    display: block;
+}
+.remove {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: block;
+    color: red;
+}

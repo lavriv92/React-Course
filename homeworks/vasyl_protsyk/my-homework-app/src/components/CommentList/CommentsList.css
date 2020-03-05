@@ -1,0 +1,31 @@
+.addName {
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+form {
+    margin-left: 20px;
+}
+
+.commentBlock {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+}
+textarea {
+    vertical-align: middle;
+    border: 1px solid gray;
+}
+
+.authorBlock {
+    display: block;
+    text-align: left;
+}
+
+.submit {
+    display: block;
+    margin-top: 10px;
+    width: 100px;
+}

@@ -1,0 +1,26 @@
+.Counter {
+    margin-top: 20px;
+}
+.Counter > div {
+    display: inline-block;
+}
+.Buttons {
+    width: 40px;
+    height: 40px;
+    background: gray;
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+.disabled {
+    cursor: not-allowed;
+    background-color: #E5E5E5;
+}
+input {
+    border: 1px solid gray;
+    min-height: 36px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 12px;
+    text-align: center;
+    font-weight: bold;
+}
