@@ -4,12 +4,12 @@ import CommentsList from './components/CommentsList';
 
 function App() {
   return (
-    <div>
+    <>
       <hr/>
       <Counter/>
       <hr/>
       <CommentsList/>
-    </div>
+    </>
   );
 }
 

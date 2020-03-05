@@ -9,17 +9,11 @@ export default class CommentsList extends React.Component {
         commentBody: ""
     };
 
-    handleAuthorChange(e) {
+    handleInputChange = (e) => {
         this.setState({
-            author: e.target.value
+            [e.target.name]: e.target.value
         });
-    }
-
-    handleCommentBodyChange(e) {
-        this.setState({
-            commentBody: e.target.value
-        });
-    }
+    };
 
     handleCommentDelete(e, delIndex) {
         e.preventDefault();
@@ -41,9 +35,9 @@ export default class CommentsList extends React.Component {
         return (
             <div>
                 <form onSubmit={(e)=>this.addComment(e)}>
-                    <div><input type="text" placeholder="Author" value={this.state.author} onChange={(e) => this.handleAuthorChange(e)}/></div>
+                    <div><input type="text" name="author" placeholder="Author" value={this.state.author} onChange={(e) => this.handleInputChange(e)}/></div>
                     <div>
-                        <textarea value={this.state.commentBody} onChange={(e) => this.handleCommentBodyChange(e)} placeholder="Comment"/>
+                        <textarea name="commentBody" value={this.state.commentBody} onChange={(e) => this.handleInputChange(e)} placeholder="Comment"/>
                     </div>
                     <div><input type="submit" value="Add comment"/></div>
                 </form>
