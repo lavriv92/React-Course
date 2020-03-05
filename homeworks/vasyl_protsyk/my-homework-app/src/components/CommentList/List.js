@@ -6,6 +6,10 @@ class List extends React.Component {
         super(props);
     }
     
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        return !(this.props.comments.length === nextProps.comments.length);
+    }
+    
     deleteComment = id => {
         this.props.onCommentDelete(id);
     };
