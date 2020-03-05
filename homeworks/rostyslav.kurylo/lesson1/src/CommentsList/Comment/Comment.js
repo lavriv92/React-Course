@@ -13,8 +13,8 @@ export default class Comment extends React.Component {
       <p className="message">{this.props.comment.message}</p>
       <p className="author">- by {this.props.comment.author}</p>
       <div className="likes">
-        <span className="label">Likes:</span>
-        <Counter />
+        <Counter incrementLabel="Like"
+                 decrementLabel="Dislike" />
       </div>
     </div>
   }

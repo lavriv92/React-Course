@@ -5,7 +5,13 @@ import './Counter.css';
 export default class Counter extends React.Component {
   static propTypes = {
     minValue: PropTypes.number,
-    maxValue: PropTypes.number
+    maxValue: PropTypes.number,
+    incrementLabel: PropTypes.string,
+    decrementLabel: PropTypes.string,
+  };
+  static defaultProps =  {
+    decrementLabel: '-',
+    incrementLabel: '+'
   };
 
   minValue = 0;
@@ -32,9 +38,9 @@ export default class Counter extends React.Component {
 
   render() {
     return <div className="counter-component">
-      <button onClick={this.decrement}>-</button>
+      <button onClick={this.decrement}>{this.props.decrementLabel}</button>
       <strong className="counter-label">{this.state.counterNumber}</strong>
-      <button onClick={this.increment}>+</button>
+      <button onClick={this.increment}>{this.props.incrementLabel}</button>
     </div>
   }
 }
