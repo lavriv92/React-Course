@@ -1,0 +1,10 @@
+.comments-area-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 320px;
+}
+.button {
+    height: 20px;
+    background: beige;
+}

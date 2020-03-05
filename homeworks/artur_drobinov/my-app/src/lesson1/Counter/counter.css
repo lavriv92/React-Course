@@ -1,8 +1,8 @@
-.comment-container {
-   margin: 40px 0;
+.counter-container {
+   margin: 20px 0;
+    display: flex;
+    align-items: center;
+    width: 200px;
+    justify-content: space-around;
 }
-.comment-block {
-    border: 1px solid grey;
-    margin: 15px 0 0 20px;
-    width: 300px;
-}
+
