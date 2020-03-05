@@ -15,12 +15,7 @@ export default class CommentsList extends React.Component {
         });
     };
 
-    handleCommentDelete(e, delIndex) {
-        e.preventDefault();
-        this.setState({comments: this.state.comments.filter((_, i) => i !== delIndex)});
-    }
-
-    addComment(e) {
+    addComment = (e) => {
         e.preventDefault();
         if(this.state.author && this.state.commentBody) {
             this.setState({
@@ -29,15 +24,20 @@ export default class CommentsList extends React.Component {
                 commentBody: ""
             });
         }
+    };
+
+    handleCommentDelete(e, delIndex) {
+        e.preventDefault();
+        this.setState({comments: this.state.comments.filter((_, i) => i !== delIndex)});
     }
 
     render() {
         return (
             <div>
-                <form onSubmit={(e)=>this.addComment(e)}>
-                    <div><input type="text" name="author" placeholder="Author" value={this.state.author} onChange={(e) => this.handleInputChange(e)}/></div>
+                <form onSubmit={this.addComment}>
+                    <div><input type="text" name="author" placeholder="Author" value={this.state.author} onChange={this.handleInputChange}/></div>
                     <div>
-                        <textarea name="commentBody" value={this.state.commentBody} onChange={(e) => this.handleInputChange(e)} placeholder="Comment"/>
+                        <textarea name="commentBody" value={this.state.commentBody} onChange={this.handleInputChange} placeholder="Comment"/>
                     </div>
                     <div><input type="submit" value="Add comment"/></div>
                 </form>
