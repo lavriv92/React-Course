@@ -4,11 +4,16 @@ import Comment from "./Comment";
 
 class CommentList extends Component {
 
-    state = {
-        comments: [{name: 'Ross', message: 'Hi there.'}],
-        newName: '',
-        newMessage: '',
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            comments: [{name: 'Ross', message: 'Hi there.'}],
+            newName: '',
+            newMessage: '',
+        };
+    }
+
+
 
     onSubmit = event => {
         event.preventDefault();
