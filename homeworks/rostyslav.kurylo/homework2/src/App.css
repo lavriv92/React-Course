@@ -1,0 +1,12 @@
+form {
+  width: 40%;
+  margin: 10vh auto;
+}
+
+form .form-control {
+  margin: 5px;
+}
+
+form .form-control input {
+  width: 100%;
+}
