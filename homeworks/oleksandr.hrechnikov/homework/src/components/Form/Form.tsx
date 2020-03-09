@@ -6,13 +6,13 @@ export interface IFormProps<T> extends State<T> {
 }
 
 type Props<T> = {
-  data: { [key in keyof T]: T[key] },
+  data: T,
   onSubmit: (form: State<T>) => void,
   children: (formProps: IFormProps<T>) => React.ReactNode
 }
 
 export type State<T> = {
-  form: { [key in keyof T]: T[key] },
+  form: T,
   errors: { [key in keyof T]: string[] },
   isValid: boolean
 }
@@ -28,7 +28,7 @@ export class Form<T> extends Component<Props<T>, State<T>> implements Omit<IForm
   }
 
   onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const fieldName = event.target.name as keyof State<T>;
+    const fieldName = event.target.name;
     const fieldValue = event.target.value;
 
     this.setState((prevState: Readonly<State<T>>, prevProps: Readonly<Props<T>>)=>{
