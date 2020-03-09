@@ -12,10 +12,10 @@ export default class Login extends Component<any, State> {
     password: ''
   }
 
-  handleSubmit = (formState: FormState) => {
+  handleSubmit = (formState: FormState<State>) => {
     if (formState.isValid) {
-      alert(`username: ${formState.form['username']}\n`+
-            `password: ${formState.form['password']}`)
+      alert(`username: ${formState.form.username}\n`+
+            `password: ${formState.form.password}`)
     } else {
       alert('Form is invalid');
     }

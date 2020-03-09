@@ -1,37 +1,37 @@
 import React, { Component, ChangeEvent, FormEvent } from 'react';
 
-export interface IFormProps extends State {
+export interface IFormProps<T> extends State<T> {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void,
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-type Props = {
-  data: { [key: string]: string },
-  onSubmit: (form: State) => void,
-  children: (formProps: IFormProps) => React.ReactNode
+type Props<T> = {
+  data: { [key in keyof T]: T[key] },
+  onSubmit: (form: State<T>) => void,
+  children: (formProps: IFormProps<T>) => React.ReactNode
 }
 
-export type State = {
-  form: { [key: string]: string },
-  errors: { [key: string]: string[] },
+export type State<T> = {
+  form: { [key in keyof T]: T[key] },
+  errors: { [key in keyof T]: string[] },
   isValid: boolean
 }
 
-export class Form extends Component<Props, State> implements Omit<IFormProps, keyof State> {
-  static defaultProps: Partial<Props> = {
+export class Form<T> extends Component<Props<T>, State<T>> implements Omit<IFormProps<T>, keyof State<T>> {
+  static defaultProps = {
     data: {}
   }
-  readonly state: Readonly<State> = {
+  readonly state: Readonly<State<T>> = {
     form: this.props.data,
-    errors: {},
+    errors: {} as { [key in keyof T]: string[] },
     isValid: false
   }
 
   onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const fieldName = event.target.name as keyof State;
+    const fieldName = event.target.name as keyof State<T>;
     const fieldValue = event.target.value;
 
-    this.setState((prevState: Readonly<State>, prevProps: Readonly<Props>)=>{
+    this.setState((prevState: Readonly<State<T>>, prevProps: Readonly<Props<T>>)=>{
       let form: { [key: string]: string } = {};
       let errors: { [key: string]: string[] } = {};
 
@@ -55,7 +55,7 @@ export class Form extends Component<Props, State> implements Omit<IFormProps, ke
       };
     }
 
-    this.setState((prevState: State, prevProps: Props) => ({
+    this.setState((prevState: State<T>, prevProps: Props<T>) => ({
       errors: { ...prevState.errors, ...errors },
       isValid
     }), () => {
@@ -65,7 +65,7 @@ export class Form extends Component<Props, State> implements Omit<IFormProps, ke
   }
 
   render() {
-    const formProps: IFormProps = {
+    const formProps: IFormProps<T> = {
       ...this.state,
       onChange: this.onChange,
       onSubmit: this.onSubmit
