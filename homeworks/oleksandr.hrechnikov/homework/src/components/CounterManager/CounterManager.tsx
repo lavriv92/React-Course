@@ -30,15 +30,17 @@ export default class CounterManager extends Component<Props, State> {
     replayPositions: false
   };
 
-  componentDidUpdate(prevProps: {}, prevState: State) {
+  componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
     if (this.state.replayPositions && this.state.positionList.length) {
+      const positionList = [...this.state.positionList];
+      const position = positionList.shift();
       setTimeout(() => {
-        const position = this.state.positionList.shift();
-        this.setState((prevState: Readonly<State>, props: Props) => {
+        this.setState((prevState: Readonly<State>, props: Readonly<Props>) => {
           const state: Partial<State> = {
             prevPositionValue: prevState.currentPositionValue,
             currentPositionValue: position?.value,
-            replayPositions: this.state.positionList.length > 0 ? true : false
+            positionList,
+            replayPositions: positionList.length > 0 ? true : false
           }
 
           return state as State;

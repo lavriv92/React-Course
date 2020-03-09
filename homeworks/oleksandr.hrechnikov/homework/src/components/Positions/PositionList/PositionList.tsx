@@ -3,7 +3,7 @@ import IPosition from '../position.model';
 
 type Props = {
   positions: IPosition[];
-  add: JSX.Element;
+  add: React.ReactNode;
   remove: (key: string) => React.ReactNode;
 }
 
