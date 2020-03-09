@@ -3,15 +3,12 @@ import * as React from 'react';
 import { AddComment } from '../addComment/addComment';
 import { CommentsList } from '../commentsList/commentsList';
 import Alert from 'react-bootstrap/Alert';
-
-export interface IComment {
-  header: string;
-  body: string;
-  author: string;
-}
+import { IComment } from '../../api/models/comment';
+import { IPost } from '../../api/models/post';
+import { dataService } from '../../api/services/data/data.service';
 
 type Props = {
-  post: any,
+  post: IPost,
   username: string
 };
 
@@ -54,21 +51,15 @@ export class CommentsContainer extends React.Component<Props, State> {
   }
 
   componentDidMount(): void {
-    const initialComment = {
-      header: 'First Comment title mock',
-      body: 'Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque\n' +
-        'ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at,\n' +
-        'tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla.\n' +
-        'Donec lacinia congue felis in faucibus.',
-      author: 'anonymus'
-    };
-
-    this.setState((state: State) => {
-      return {
-        ...state,
-        commentsList: [initialComment]
-      };
-    })
+    dataService.loadComments(this.props.post.id)
+      .subscribe((comments: IComment[]) => {
+        this.setState((state: State) => {
+          return {
+            ...state,
+            commentsList: comments
+          };
+        })
+      });
   }
   render() {
     return (
@@ -87,4 +78,4 @@ export class CommentsContainer extends React.Component<Props, State> {
       </>
     );
   };
-};
+}

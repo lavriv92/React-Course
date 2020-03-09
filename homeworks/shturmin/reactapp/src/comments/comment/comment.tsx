@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Media from 'react-bootstrap/Media';
 import './comment.css';
+import { IComment } from '../../api/models/comment';
 
 type Props = {
-  comment: any
+  comment: IComment
 };
 type State = {
 

@@ -3,17 +3,15 @@ import * as React from 'react';
 import Media from 'react-bootstrap/Media';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { IComment } from '../../api/models/comment';
 
-type Props = {
-  onCommentAdd: any
-};
-type State = {
-  comment: {
-    header: string;
-    body: string;
-    author: string;
-  }
-};
+interface Props {
+  onCommentAdd(data: IComment): void;
+}
+
+interface State {
+  comment: IComment
+}
 
 export class AddComment extends React.Component<Props, State> {
 
@@ -22,6 +20,8 @@ export class AddComment extends React.Component<Props, State> {
 
     this.state = {
       comment: {
+        postId: 0,
+        id: 0,
         header: '',
         body: '',
         author: 'ME'

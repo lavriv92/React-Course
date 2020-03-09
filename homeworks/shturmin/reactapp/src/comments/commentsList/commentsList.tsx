@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { Comment } from '../comment/comment';
+import { IComment } from '../../api/models/comment';
 
 type Props = {
-  commentsList: any[]
+  commentsList: IComment[]
 };
 type State = {};
 
@@ -14,7 +15,7 @@ export class CommentsList extends React.Component<Props, State> {
           Post comments:
         </div>
 
-        { this.props.commentsList.length > 0 && this.props.commentsList.map((comment: any, i: number) => {
+        { this.props.commentsList.length > 0 && this.props.commentsList.map((comment: IComment, i: number) => {
           return <Comment key={i} comment={comment}></Comment>
         })}
       </>

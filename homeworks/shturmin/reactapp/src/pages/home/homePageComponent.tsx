@@ -9,20 +9,36 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { CommentsContainer } from '../../comments/commentsContainer/commentsContainer';
 import Button from 'react-bootstrap/Button';
+import { IPost } from '../../api/models/post';
+import { IComment } from '../../api/models/comment';
+import { dataService } from '../../api/services/data/data.service';
 
 type Props = {
   isLoggedIn: boolean;
   username?: string;
   password?: string;
-  onLogin: any;
-  onLogOut: any;
+  onLogin(data: any): void;
+  onLogOut(): void;
 };
+
 type State = {
-  post: any,
-  commentsList: any[];
+  posts: IPost[],
+  commentsList: IComment[];
 };
 
 export class HomePageComponent extends React.Component<Props, State> {
+  componentDidMount(): void {
+    dataService.loadPost()
+      .subscribe((posts: IPost[]) => {
+        this.setState((state: State) => {
+          return {
+            ...state,
+            posts: posts
+          }
+        })
+      })
+  }
+
   render() {
     return (
       <>
@@ -40,14 +56,19 @@ export class HomePageComponent extends React.Component<Props, State> {
 			        </Button>
 		        </Col>
 	        </Row>
-	        <Row>
-		        <Col>
-			        <Post>
-			        </Post>
-			        <CommentsContainer post={{}} username={this.props.username}>
-			        </CommentsContainer>
-		        </Col>
-	        </Row>
+          { this.state.posts && this.state.posts.length > 0 && this.state.posts.map((post:IPost, i: number) => {
+             return (
+                <Row key={post.id}>
+                  <Col>
+                    <Post post={post}>
+                    </Post>
+                    <CommentsContainer post={post} username={this.props.username}>
+                    </CommentsContainer>
+                  </Col>
+                </Row>
+             )
+            })
+          }
         </Container>
         }
         { !this.props.isLoggedIn &&
