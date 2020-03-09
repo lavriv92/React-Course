@@ -47,15 +47,14 @@ class Form extends React.Component {
                password: !this.state.form.password ? ['Enter password please'] : ''
            };
            this.setState({ errors });
+
+           return;
         }
 
-        if (this.state.form.username && this.state.form.password) {
-            this.setState({
-                errors: { username: [], password: [] }
-            });
-
-            this.props.onSubmit(this.state.form);
-        }
+        this.setState({
+            errors: { username: [], password: [] }
+        });
+        this.props.onSubmit(this.state.form);
     };
     
     render() {
