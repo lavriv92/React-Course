@@ -1,0 +1,14 @@
+.comment {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+.comment button {
+    position: absolute;
+    right: 0;
+    z-index: 1;
+}
+
+form {
+    margin-bottom: 10px;
+}
