@@ -1,0 +1,14 @@
+.comment-component {
+    position: relative;
+}
+
+.comment-component .message {
+    padding: 0;
+    margin: 0;
+}
+
+.comment-component .likes {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}

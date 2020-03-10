@@ -1,0 +1,14 @@
+.comments-list-component {
+    padding: 5px;
+    margin: 10px;
+}
+.comments-list-component .comments-section {
+    border: 1px solid slategrey;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.comments-list-component .new-comment-section {
+    font-size: 1.25em;
+}

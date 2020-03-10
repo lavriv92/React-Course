@@ -1,0 +1,8 @@
+.counter-component {
+    display: inline-block;
+}
+
+.counter-component .counter-label {
+    padding: 4px;
+    font-size: 0.85em;
+}
