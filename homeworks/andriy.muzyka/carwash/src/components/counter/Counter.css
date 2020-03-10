@@ -1,0 +1,17 @@
+.App-header .App-counter {
+  flex: 2 1 30%;
+}
+
+.App-header .App-counter .number {
+  color: #F39C12;
+  padding: 0 15px;
+  font-weight: bold;
+}
+
+.App-header .App-counter >  button {
+  color: white;
+  background-color: #85929E;
+  border: none;
+  font-size: 20px;
+  width: 30px;
+}
