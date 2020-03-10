@@ -1,0 +1,17 @@
+body {
+  background-color: #5D6D7E;
+}
+
+.App-header {
+  background-color: #34495E;
+  text-align: center;
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-header .App-logo {
+  flex: 1 2 70%;
+}

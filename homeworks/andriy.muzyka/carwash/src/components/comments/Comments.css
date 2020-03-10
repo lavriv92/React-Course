@@ -1,0 +1,21 @@
+.App-Comments ul {
+  color: #CACFD2;
+  list-style: none;
+}
+
+.App-Comments ul li {
+  margin-bottom: 10px;
+}
+
+.App-Comments ul li span.author {
+  margin-right: 10px;
+  color: #F2F3F4;
+  font-size: calc(5px + 2vmin);
+  text-decoration: underline;
+}
+
+.App-Comments ul li span.close {
+  padding: 0 10px;
+  outline: 1px solid white;
+  margin-left: 20px;
+}
