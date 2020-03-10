@@ -4,10 +4,10 @@ import FirstHomeTask from './components/FirstHomeTask/FirstHomeTask'
 import SecondHomeTask from "./components/SecondHomeTask/SecondHomeTask";
 
 function App() {
-  const [hide, setValue] = useState(true);
+  const [hide, setHide] = useState(true);
   
   function handleState(isHide) {
-    setValue(!isHide);
+    setHide(!isHide);
   }
 
   return (
