@@ -1,14 +1,13 @@
 import React from 'react'
 
-function Comment(props) {
-        return (
-            <div>
-                Comment
-                <div>{props.author}</div>
-                <p>{props.text}</p>
-                <a href="#" onClick={props.delete}>delete</a>
-            </div>
-        )
+export default function Comment(props) {
+    return (
+        <div>
+            <br/>
+            <div>Comment {props.num}</div>
+            <div>{props.author}</div>
+            <p>{props.message}</p>
+            <button onClick={props.remove}>Remove comment</button>
+        </div>
+    )
 }
-
-export default Comment;
