@@ -1,0 +1,28 @@
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import logo from '../assets/logo.svg';
+
+const Header = () => {
+  return (
+    <header className="py-3 border-bottom">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-auto">
+            <NavLink to="/">
+              <img height="50" src={logo} alt="App logo"/>
+            </NavLink>
+          </div>
+          <div className="col-auto ml-auto">
+            <nav>
+              <NavLink to="/form">
+                Form
+              </NavLink>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;
