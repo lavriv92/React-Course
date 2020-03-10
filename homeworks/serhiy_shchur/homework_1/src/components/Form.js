@@ -44,7 +44,7 @@ export default class Form extends React.Component {
         if( this.state.form.password.length < 8 ) {
             errors.password.push('Password should be 8 chars at least');
         }
-        if( !this.state.form.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]$/) ) {
+        if( !this.state.form.password.match(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]/) ) {
             errors.password.push('Password should contain at least one letter and one number');
         }
         this.setState(
@@ -52,7 +52,7 @@ export default class Form extends React.Component {
                 errors
             }
         );
-        if(!errors.length) {
+        if(!errors.username.length && !errors.password.length) {
             this.props.onSubmit();
         }
     };
