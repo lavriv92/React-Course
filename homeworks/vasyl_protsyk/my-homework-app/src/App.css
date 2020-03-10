@@ -28,6 +28,17 @@
   color: #61dafb;
 }
 
+.hidden {
+  display: none;
+}
+
+.hometask-1 {
+  height: 40px;
+  color: blue;
+  font-size: 20px;
+  margin: 20px 0;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
