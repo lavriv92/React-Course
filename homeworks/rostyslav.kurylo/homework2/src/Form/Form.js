@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FormValidator from './FormValidator';
 
 export default class Form extends React.Component {
     static propTypes = {
@@ -18,7 +19,6 @@ export default class Form extends React.Component {
 
         const {name, value} = e.target;
 
-        console.log(name, value);
         this.setState(state => {
             return {
                 form: {
@@ -38,14 +38,47 @@ export default class Form extends React.Component {
         }
     };
 
-    validate = () => {
-        // TODO: implement me
-        return true;
+    validate = (fieldName, value) => {
+        const rules = this.props.formConfig.validations[fieldName];
+
+        if (!rules) {
+            return true;
+        }
+
+        let errors = [];
+
+        const validationResult = Object.keys(rules).every(rule => {
+            if (FormValidator.hasOwnProperty(rule)) {
+                const isValid = FormValidator[rule](value, rules[rule]);
+
+                if (isValid) {
+                    errors = [];
+                } else {
+                    errors.push(this.props.formConfig.errorMessages[rule](fieldName, rules[rule]));
+                }
+
+                return isValid;
+            }
+            return false;
+        });
+
+        this.setState(state => {
+            return {
+                errors: {
+                    ...state.errors,
+                    [fieldName]: errors
+                }
+            };
+        });
+
+        return validationResult;
     };
 
     isValid = () => {
-        // TODO: implement me
-        return true;
+        const result = this.props.formConfig.keys.filter(fieldName => {
+            return !this.validate(fieldName, this.state.form[fieldName]);
+        });
+        return !result.length;
     };
 
     resetForm = () => {

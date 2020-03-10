@@ -9,11 +9,19 @@ function App() {
         console.log('Form was successfully submitted!', formData);
     };
     const formConfig = {
-        userName: {
-            isRequired: true
+        keys: ['username', 'password'],
+        validations: {
+            username: {
+                isRequired: true
+            },
+            password: {
+                isRequired: true,
+                minLength: 5
+            }
         },
-        password: {
-            isRequired: true
+        errorMessages: {
+            isRequired: fieldName => `[${fieldName}] is required.`,
+            minLength: (fieldName, minLength) => `[${fieldName}] should be at least ${minLength} symbols.`
         }
     };
 
@@ -27,7 +35,8 @@ function App() {
                                    placeholder="User name"
                                    onChange={onChange}
                                    value={form.username}/>
-                            {errors.username && errors.username.map(err => <div>{err}</div>)}
+                            {errors.username && errors.username.map(
+                              (err, index) => <div key={index} className="error-message">{err}</div>)}
                         </div>
                         <div className="form-control">
                             <input type="password"
@@ -35,7 +44,8 @@ function App() {
                                    name="password"
                                    onChange={onChange}
                                    value={form.password}/>
-                            {errors.username && errors.username.map(err => <div>{err}</div>)}
+                            {errors.username && errors.password.map(
+                              (err, index) => <div key={index} className="error-message">{err}</div>)}
                         </div>
                         <div className="form-control">
                             <button type="submit">Submit</button>

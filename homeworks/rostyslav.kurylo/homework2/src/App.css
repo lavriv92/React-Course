@@ -10,3 +10,8 @@ form .form-control {
 form .form-control input {
   width: 100%;
 }
+
+form .error-message {
+  color: #ff0000;
+  font-size: 0.75em;
+}
