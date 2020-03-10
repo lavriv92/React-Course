@@ -9,9 +9,20 @@ export default class Form extends React.Component {
         children: PropTypes.func.isRequired
     };
 
-    state = {
-        form: {},
-        errors: {}
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            form: this.initFormFields(),
+            errors: {}
+        };
+    }
+
+    initFormFields = () => {
+        let form = {};
+        this.props.formConfig.keys.forEach(fieldName => form[fieldName] = '');
+
+        return form;
     };
 
     onChange = e => {
@@ -82,7 +93,11 @@ export default class Form extends React.Component {
     };
 
     resetForm = () => {
-        // TODO: implement me
+        this.setState(state => {
+            return {
+                form: this.initFormFields()
+            };
+        })
     };
 
     render() {
