@@ -4,10 +4,11 @@ export default function Comment(props) {
     return (
         <div>
             <br/>
-            <div>Comment {props.num}</div>
-            <div>{props.author}</div>
-            <p>{props.message}</p>
-            <button onClick={props.remove}>Remove comment</button>
+            <div>Comment {props.id}</div>
+            <div>ID: {props.id}</div>
+            <div>{props.comment.author}</div>
+            <p>{props.comment.message}</p>
+            <button onClick={(e) => props.remove(e, props.id)}>Remove comment</button>
         </div>
     )
 }

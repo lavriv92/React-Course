@@ -1,69 +1,48 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Comment from "../Comment/Comment"
+import List from "../List/List";
+import Form from "../Form/Form";
 
 export default class CommentList extends React.Component {
     state = {
         commentList: [],
-        count: 0,
         author: "",
-        message: ""
+        message: "",
+        id: 0
+
     };
 
-    addComment = e => {
+    addComment = (e) => {
         e.preventDefault();
-        console.log("sas", e);
         this.setState({
-            commentList: [...this.state.commentList,
+            commentList: [
                 {
-                    message: this.state.message,
-                    author: this.state.author,
-                    count: this.state.count + 1
-                }]
+                    message: e.target.message.value,
+                    author: e.target.author.value,
+                    id: this.state.id + 1
+                },
+                ...this.state.commentList]
         });
-        this.clearFields();
+        console.log("CommentList");
+        console.log(this.state.commentList);
     };
 
-    clearFields = () => {
+    removeComment(e, id) {
+        e.preventDefault();
+        console.log("remove " + id);
+        console.log("CommentList in remove");
+        console.log(this.state.commentList);
         this.setState({
-            message: "",
-            author: ""
-        });
-    };
-
-    removeComment= () => {
-
-    };
-
-    handleAuthorChange = e => {
-        this.setState({
-            author: e.target.value
-        });
-    };
-
-    handleMessageChange = e => {
-        this.setState({
-            message: e.target.value
+            ...this.state,
+            commentList: this.state.commentList.filter((_, i) => i !== id)
         });
     };
 
     render() {
-        console.log("test", this.state.commentList);
         return (
             <div>
-                <form onSubmit={(event) => this.addComment(event)}>
-                    <div>
-                        <input type="text" name="author" placeholder="Author" value={this.state.author}
-                               onChange={this.handleAuthorChange}/>
-                    </div>
-                    <div>
-                        <textarea name="comment" value={this.state.message} onChange={this.handleMessageChange}/>
-                    </div>
-                    <input type="submit" value="Add comment"/>
-                </form>
-                {this.state.commentList.map((comment, i) =>
-                    <Comment key={i} num={i} author={comment.author} message={comment.message}/>
-                )}
+                <Form addComment={this.addComment}/>
+                <List comments={this.state.commentList} removeComment={this.removeComment}/>
             </div>
         );
     }
