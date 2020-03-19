@@ -4,24 +4,27 @@ import List from "../List/List";
 import Form from "../Form/Form";
 
 export default class CommentList extends React.Component {
-    state = {
-        commentList: [],
-        author: "",
-        message: "",
-        id: 0
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            name: "",
+            message: "",
+            id: 0,
+            commentList: []
+        };
     };
 
     addComment = (e) => {
         e.preventDefault();
         this.setState({
             commentList: [
+                ...this.state.commentList,
                 {
                     message: e.target.message.value,
                     author: e.target.author.value,
                     id: this.state.id + 1
-                },
-                ...this.state.commentList]
+                }
+            ]
         });
         console.log("CommentList");
         console.log(this.state.commentList);
@@ -33,7 +36,6 @@ export default class CommentList extends React.Component {
         console.log("CommentList in remove");
         console.log(this.state.commentList);
         this.setState({
-            ...this.state,
             commentList: this.state.commentList.filter((_, i) => i !== id)
         });
     };
