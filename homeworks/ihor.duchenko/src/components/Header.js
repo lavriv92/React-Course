@@ -13,9 +13,12 @@ const Header = () => {
             </NavLink>
           </div>
           <div className="col-auto ml-auto">
-            <nav>
-              <NavLink to="/form">
+            <nav className="mx-n2">
+              <NavLink className="px-2" to="/form">
                 Form
+              </NavLink>
+              <NavLink className="px-2" to="/auth-context">
+                Auth Context
               </NavLink>
             </nav>
           </div>

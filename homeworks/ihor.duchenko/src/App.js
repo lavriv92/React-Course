@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import PageHome from './components/PageHome';
 import PageForm from './components/PageForm';
+import AuthContext from './components/AuthContext/AuthContext';
 import { BrowserRouter as Router, Route, withRouter } from 'react-router-dom';
 
 const Root = () => (
@@ -13,6 +14,9 @@ const Root = () => (
       />
       <Route exact path="/form"
         render={() => <PageForm />}
+      />
+      <Route exact path="/auth-context"
+        render={() => <AuthContext />}
       />
     </main>
   </div>
